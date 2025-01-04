@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Dashboard\DashboardController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Dashboard\SectionController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,22 +19,47 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-    Route::get('/dashboardBack', [DashboardController::class, 'index']);
+Route::get('/Dashboard_Admin', [DashboardController::class, 'index']);
 
 
-    Route::group(
-        [
-            'prefix' => LaravelLocalization::setLocale(),
-            'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-        ], function(){
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
 
-            Route::get('/dashboard/user', function () {
-                return view('Dashboard.User.dashboard');
-            })->middleware(['auth'])->name('dashboard.user');
 
-            Route::get('/dashboard/admin', function () {
-                return view('Dashboard.Admin.dashboard');
-            })->middleware(['auth:admin'])->name('dashboard.admin');
+   //################################ dashboard user ##########################################
+    Route::get('/dashboard/user', function () {
+        return view('Dashboard.User.dashboard');
+    })->middleware(['auth'])->name('dashboard.user');
+    //################################ end dashboard user #####################################
 
-            require __DIR__.'/auth.php';
-        });
+
+
+    //################################ dashboard admin ########################################
+    Route::get('/dashboard/admin', function () {
+        return view('Dashboard.Admin.dashboard');
+    })->middleware(['auth:admin'])->name('dashboard.admin');
+
+    //################################ end dashboard admin #####################################
+
+//---------------------------------------------------------------------------------------------------------------
+
+
+    Route::middleware(['auth:admin'])->group(function () {
+
+        //############################# sections route ##########################################
+
+        Route::resource('Sections', SectionController::class);
+
+        //############################# end sections route ######################################
+
+
+    });
+
+
+    require __DIR__.'/auth.php';
+
+
+});
