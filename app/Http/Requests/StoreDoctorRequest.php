@@ -6,17 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreDoctorRequest extends FormRequest
 {
-    /**
-     * تحديد إذا كان المستخدم مسموحًا له بإجراء هذا الطلب.
-     */
+   
     public function authorize(): bool
     {
-        return true; // اجعلها true للسماح بإجراء الطلب.
+        return true; 
     }
 
-    /**
-     * قواعد التحقق من البيانات.
-     */
+   
     public function rules(): array
     {
         return [
@@ -30,9 +26,7 @@ class StoreDoctorRequest extends FormRequest
         ];
     }
 
-    /**
-     * رسائل الخطأ المخصصة.
-     */
+  
     public function messages(): array
     {
         return trans('validation');
