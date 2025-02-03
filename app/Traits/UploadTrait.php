@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 trait UploadTrait
@@ -49,4 +50,13 @@ trait UploadTrait
         // إذا لم يتم رفع صورة
         return null;
     }
+
+
+    public function Delete_attachment($disk,$path,$id){
+
+        Storage::disk($disk)->delete($path);
+        image::where('imageable_id',$id)->delete();
+
+    }
+
 }

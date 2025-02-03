@@ -33,4 +33,30 @@ class DoctorController extends Controller
     {
         return $this->Doctors->store($request);
     }
+
+
+    public function edit($id){
+        return $this->Doctors->edit($id);
+    }
+
+    public function update(Request $request){
+  
+        return $this->Doctors->update($request);
+    }
+
+    public function destroy(Request $request)
+    {
+        return $this->Doctors->destroy($request);
+    }
+
+
+    public function update_password(Request $request){
+ 
+        return $this->Doctors->update_password($request);
+    }
+
+    public function update_status(Request $request){
+ 
+        return $this->Doctors->update_status($request);
+    }
 }

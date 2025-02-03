@@ -17,6 +17,11 @@
                     <label for="exampleInputPassword1">{{trans('Dashboard/sections_trans.name_sections')}}</label>
                     <input type="hidden" name="id" value="{{ $section->id }}">
                     <input type="text" name="name" value="{{ $section->name }}" class="form-control">
+
+
+                        <!-- Field for Section Description -->
+                        <label for="description" class="mt-3">{{ trans('Dashboard/sections_trans.description_sections') }}</label>
+                        <textarea name="description" id="description" class="form-control" rows="3" required></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Dashboard/sections_trans.Close')}}</button>

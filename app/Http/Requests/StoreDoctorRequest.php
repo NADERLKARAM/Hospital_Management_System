@@ -20,7 +20,6 @@ class StoreDoctorRequest extends FormRequest
             'password' => 'required|min:8',
             'section_id' => 'required|exists:sections,id',
             'phone' => ['required', 'regex:/^(\+20|01|05|966|971)[0-9]{8,}$/'],
-            'price' => 'required|numeric|min:0',
             'name' => 'required|string|max:255',
             'appointments' => 'required|array',
         ];
